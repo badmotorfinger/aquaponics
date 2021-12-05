@@ -82,7 +82,7 @@ void manageWaterInTank()
   {
     Serial.println("Water pump is starting up again");
 
-    lastWaterLevel = currentWaterLevel;
+    lastWaterLevel = currentWaterLevel - 50;
 
     // Turn on water pump
     digitalWrite(WATERPUMP_PIN, HIGH);
