@@ -9,7 +9,7 @@
 #define currentWaterLevel_SENSOR_PIN A4
 
 #define WATERPUMP_OFF_SECONDS ((unsigned long)1000 * 60 * 15)
-#define WATERPUMP_OFF_SECONDS_NIGHTTIME ((unsigned long)1000 * 60 * 30)
+#define WATERPUMP_OFF_SECONDS_NIGHTTIME ((unsigned long)1000 * 60 * 60)
 #define GROWLIGHT_TIME_SECONDS ((unsigned long)60 * 60 * 8)   // 8 Hours
 
 bool isWaterPumpOn = false;
