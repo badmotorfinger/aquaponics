@@ -97,7 +97,7 @@ U 1 1 61AC0451
 P 1300 1300
 F 0 "M1" H 1458 1296 50  0000 L CNN
 F 1 "Growbed Pump " H 1458 1205 50  0000 L CNN
-F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" H 1300 1210 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 1300 1210 50  0001 C CNN
 F 3 "~" H 1300 1210 50  0001 C CNN
 	1    1300 1300
 	1    0    0    -1  
@@ -108,7 +108,7 @@ U 1 1 61AC2846
 P 1300 1950
 F 0 "M2" H 1458 1946 50  0000 L CNN
 F 1 "Overflow Pump" H 1458 1855 50  0000 L CNN
-F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" H 1300 1860 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 1300 1860 50  0001 C CNN
 F 3 "~" H 1300 1860 50  0001 C CNN
 	1    1300 1950
 	1    0    0    -1  
@@ -119,7 +119,7 @@ U 1 1 61AC8142
 P 1300 2650
 F 0 "M3" H 1458 2646 50  0000 L CNN
 F 1 "Fish Feeder" H 1458 2555 50  0000 L CNN
-F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" H 1300 2560 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 1300 2560 50  0001 C CNN
 F 3 "~" H 1300 2560 50  0001 C CNN
 	1    1300 2650
 	1    0    0    -1  
@@ -260,7 +260,7 @@ U 1 1 61B07810
 P 6500 3350
 F 0 "J3" H 6528 3376 50  0000 L CNN
 F 1 "Water Level Sensor" H 6528 3285 50  0000 L CNN
-F 2 "Connector_PinHeader_1.00mm:PinHeader_1x03_P1.00mm_Vertical" H 6500 3350 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 6500 3350 50  0001 C CNN
 F 3 "~" H 6500 3350 50  0001 C CNN
 	1    6500 3350
 	1    0    0    -1  
@@ -271,7 +271,7 @@ U 1 1 61B0AB30
 P 6500 3850
 F 0 "J4" H 6528 3876 50  0000 L CNN
 F 1 "Rain Sensor" H 6528 3785 50  0000 L CNN
-F 2 "Connector_PinHeader_1.00mm:PinHeader_1x03_P1.00mm_Vertical" H 6500 3850 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 6500 3850 50  0001 C CNN
 F 3 "~" H 6500 3850 50  0001 C CNN
 	1    6500 3850
 	1    0    0    -1  
@@ -343,7 +343,7 @@ U 1 1 61ADB901
 P 5900 2750
 F 0 "R1" H 5970 2796 50  0000 L CNN
 F 1 "Light Sensor" H 5970 2705 50  0000 L CNN
-F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" V 5950 2500 50  0001 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" V 5950 2500 50  0001 L CNN
 F 3 "~" H 5900 2700 50  0001 C CNN
 	1    5900 2750
 	1    0    0    -1  
@@ -386,7 +386,7 @@ U 1 1 61B3D7D4
 P 4950 4650
 F 0 "R6" H 5020 4696 50  0000 L CNN
 F 1 "10k" H 5020 4605 50  0000 L CNN
-F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal" V 4880 4650 50  0001 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P1.90mm_Vertical" V 4880 4650 50  0001 C CNN
 F 3 "~" H 4950 4650 50  0001 C CNN
 	1    4950 4650
 	1    0    0    1   
@@ -454,12 +454,12 @@ Wire Wire Line
 $Comp
 L power:+5V #PWR0105
 U 1 1 61BB705B
-P 5350 2950
-F 0 "#PWR0105" H 5350 2800 50  0001 C CNN
-F 1 "+5V" V 5365 3078 50  0000 L CNN
-F 2 "" H 5350 2950 50  0001 C CNN
-F 3 "" H 5350 2950 50  0001 C CNN
-	1    5350 2950
+P 5200 2950
+F 0 "#PWR0105" H 5200 2800 50  0001 C CNN
+F 1 "+5V" V 5215 3078 50  0000 L CNN
+F 2 "" H 5200 2950 50  0001 C CNN
+F 3 "" H 5200 2950 50  0001 C CNN
+	1    5200 2950
 	0    1    1    0   
 $EndComp
 $Comp
@@ -532,18 +532,16 @@ $EndComp
 Wire Wire Line
 	5900 3050 5900 2900
 Wire Wire Line
-	5000 2950 5350 2950
-Wire Wire Line
 	3800 2950 3650 2950
 Wire Wire Line
 	4550 1550 3650 1550
 Wire Wire Line
 	3650 1550 3650 2950
 $Comp
-L power:GND #PWR?
+L power:GND #PWR0111
 U 1 1 61C4FE01
 P 3650 1350
-F 0 "#PWR?" H 3650 1100 50  0001 C CNN
+F 0 "#PWR0111" H 3650 1100 50  0001 C CNN
 F 1 "GND" H 3655 1177 50  0000 C CNN
 F 2 "" H 3650 1350 50  0001 C CNN
 F 3 "" H 3650 1350 50  0001 C CNN
@@ -553,4 +551,6 @@ $EndComp
 Wire Wire Line
 	3650 1350 3650 1550
 Connection ~ 3650 1550
+Wire Wire Line
+	5000 2950 5200 2950
 $EndSCHEMATC
