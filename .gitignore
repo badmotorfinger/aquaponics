@@ -15,6 +15,7 @@ pcb/**/*.tmp
 pcb/**/*-save.pro
 pcb/**/*-save.kicad_pcb
 pcb/**/fp-info-cache
+pcb/gerber
 
 # Netlist files (exported from Eeschema)
 pcb/**/*.net
@@ -26,5 +27,9 @@ pcb/**/*.ses
 # Exported BOM files
 pcb/**/*.xml
 pcb/**/*.csv
+
+.clang_complete
+.gcc-flags.json
+.pio/
 
 
