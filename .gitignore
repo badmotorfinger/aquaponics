@@ -28,8 +28,8 @@ pcb/**/*.ses
 pcb/**/*.xml
 pcb/**/*.csv
 
-.clang_complete
-.gcc-flags.json
-.pio/
+src/.clang_complete
+src/.gcc-flags.json
+src/.pio/
 
 
