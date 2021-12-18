@@ -15,10 +15,8 @@
 bool isWaterPumpOn = false;
 bool isNightTime = false;
 
-int16_t lastWaterLevel = 0;
-
 millisDelay pumpDelay;
-millisDelay loopDelay;
+millisDelay finalDelay;
 millisDelay growLightDelay;
 
 void manageWaterInTank();
@@ -50,74 +48,70 @@ void setup() {
   analogWrite(A0, 0);                 // Light sensor off
   digitalWrite(WATERPUMP_PIN, LOW);  // Water pump off
   digitalWrite(GROWLIGHT_PIN, LOW);   // Growlight off
-
-  loopDelay.start(1000);
 }
 
 void loop()
 {
   pumpDelay.justFinished();
-  loopDelay.justFinished();
   growLightDelay.justFinished();
 
-  if (!loopDelay.isRunning()) {
-    loopDelay.repeat();
-    manageWaterInTank();
-    manageGrowLight();
-    //lightUp();
-  }
+  manageWaterInTank();
+  manageGrowLight();
 }
 
 void manageWaterInTank()
 {
-  if (pumpDelay.isRunning()) {
+  if (finalDelay.justFinished()) {
+
+    Serial.println("Turning off water pump");
+    // Turn off water pump
+    digitalWrite(WATERPUMP_PIN, LOW);
+    isWaterPumpOn = false;
+
+    uint32_t pumpOffSeconds = isNightTime ? WATERPUMP_OFF_SECONDS_NIGHTTIME : WATERPUMP_OFF_SECONDS;
+
+    // Wait for the water to drain
+    pumpDelay.finish();
+    pumpDelay.start(pumpOffSeconds);
+    return;
+  }
+
+  if (pumpDelay.isRunning() || finalDelay.isRunning()) {
     return;
   }
 
   digitalWrite(currentWaterLevel_SENSOR_ONOFF_PIN, HIGH);
 
-  int16_t currentWaterLevel = analogRead(currentWaterLevel_SENSOR_PIN);
+  uint32_t currentWaterLevel = analogRead(currentWaterLevel_SENSOR_PIN);
 
   if (!isWaterPumpOn)
   {
     Serial.println("Water pump is starting up again");
 
-    lastWaterLevel = currentWaterLevel - 50;
-
     // Turn on water pump
     digitalWrite(WATERPUMP_PIN, HIGH);
     isWaterPumpOn = true;
 
-    pumpDelay.finish();
-    pumpDelay.start(15000); // Alow the water level to drain before taking another reading
+    pumpDelay.start(2000);
+    return;
   }
 
+  Serial.print("Current water level");
+  Serial.println(currentWaterLevel);
+
   // Only process when the water level reading is significant
-  if (abs(lastWaterLevel - currentWaterLevel) >= 100)
+  if (currentWaterLevel >= 600)
   {
-    if (currentWaterLevel < lastWaterLevel)
-    {
-      Serial.println("Water is still being pumped out");
+    Serial.println("Water is draining. Waiting a few seconds");
 
-      lastWaterLevel = currentWaterLevel;
-
-      pumpDelay.finish();
-      pumpDelay.start(5000); // Alow the water level to drain before taking another reading
-    }
-    else
-    {
-      Serial.println("Water is draining into fish tank");
-
-      // Turn off water pump
-      digitalWrite(WATERPUMP_PIN, LOW);
-      isWaterPumpOn = false;
-
-      uint32_t pumpOffSeconds = isNightTime ? WATERPUMP_OFF_SECONDS_NIGHTTIME : WATERPUMP_OFF_SECONDS;
-
-      // Wait for the water to drain
-      pumpDelay.finish();
-      pumpDelay.start(pumpOffSeconds);
-    }
+    // Wait for the water to drain
+    finalDelay.finish();
+    finalDelay.start(5000);
+  }
+  else
+  {
+    Serial.println("Water level is still below sensor");
+    pumpDelay.repeat();
   }
 
   digitalWrite(currentWaterLevel_SENSOR_ONOFF_PIN, LOW);
