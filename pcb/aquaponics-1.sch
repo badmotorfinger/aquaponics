@@ -220,7 +220,7 @@ L Device:R R3
 U 1 1 61AE3EB3
 P 5900 2200
 F 0 "R3" H 5970 2246 50  0000 L CNN
-F 1 "330" H 5970 2155 50  0000 L CNN
+F 1 "10k" H 5970 2155 50  0000 L CNN
 F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P1.90mm_Vertical" V 5830 2200 50  0001 C CNN
 F 3 "~" H 5900 2200 50  0001 C CNN
 	1    5900 2200
@@ -241,8 +241,6 @@ Wire Wire Line
 	950  1750 1300 1750
 Wire Wire Line
 	950  1100 950  850 
-Wire Wire Line
-	950  850  4550 850 
 $Comp
 L Connector:Conn_01x02_Female J1
 U 1 1 61AC2ACC
@@ -305,12 +303,12 @@ Wire Wire Line
 $Comp
 L Connector:Screw_Terminal_01x02 J2
 U 1 1 61B3F470
-P 4750 1450
-F 0 "J2" H 4830 1442 50  0000 L CNN
-F 1 "Screw_Terminal_01x02" H 4830 1351 50  0000 L CNN
-F 2 "TerminalBlock_Phoenix:TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal" H 4750 1450 50  0001 C CNN
-F 3 "~" H 4750 1450 50  0001 C CNN
-	1    4750 1450
+P 5200 1300
+F 0 "J2" H 5280 1292 50  0000 L CNN
+F 1 "Screw_Terminal_01x02" H 5280 1201 50  0000 L CNN
+F 2 "TerminalBlock_Phoenix:TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal" H 5200 1300 50  0001 C CNN
+F 3 "~" H 5200 1300 50  0001 C CNN
+	1    5200 1300
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -336,7 +334,7 @@ Wire Wire Line
 	4700 1700 4700 1800
 Connection ~ 4550 1300
 Wire Wire Line
-	4550 1300 4550 1450
+	4550 1300 5000 1300
 $Comp
 L Device:R_PHOTO R1
 U 1 1 61ADB901
@@ -419,10 +417,6 @@ $EndComp
 Wire Wire Line
 	5100 3950 5000 3950
 Wire Wire Line
-	5000 3750 5550 3750
-Wire Wire Line
-	5550 3750 5550 5150
-Wire Wire Line
 	5550 5150 4950 5150
 $Comp
 L power:+3.3V #PWR0104
@@ -503,21 +497,6 @@ Wire Wire Line
 	6300 3400 6300 3350
 Wire Wire Line
 	5750 3850 6300 3850
-Wire Bus Line
-	7700 1650 7700 4000
-$Comp
-L power:+1V5 #PWR0109
-U 1 1 61BDFBA0
-P 7700 1350
-F 0 "#PWR0109" H 7700 1200 50  0001 C CNN
-F 1 "+1V5" H 7715 1523 50  0000 C CNN
-F 2 "" H 7700 1350 50  0001 C CNN
-F 3 "" H 7700 1350 50  0001 C CNN
-	1    7700 1350
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	7700 1650 7700 1350
 $Comp
 L power:+5V #PWR0110
 U 1 1 61C0E91D
@@ -533,10 +512,6 @@ Wire Wire Line
 	5900 3050 5900 2900
 Wire Wire Line
 	3800 2950 3650 2950
-Wire Wire Line
-	4550 1550 3650 1550
-Wire Wire Line
-	3650 1550 3650 2950
 $Comp
 L power:GND #PWR0111
 U 1 1 61C4FE01
@@ -549,8 +524,31 @@ F 3 "" H 3650 1350 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	3650 1350 3650 1550
-Connection ~ 3650 1550
-Wire Wire Line
 	5000 2950 5200 2950
+Wire Wire Line
+	5550 5150 5550 4050
+Wire Wire Line
+	5550 4050 5000 4050
+$Comp
+L pspice:DIODE D1
+U 1 1 61C3F641
+P 4100 1400
+F 0 "D1" H 4100 1135 50  0000 C CNN
+F 1 "DIODE" H 4100 1226 50  0000 C CNN
+F 2 "Diode_THT:D_DO-15_P2.54mm_Vertical_AnodeUp" H 4100 1400 50  0001 C CNN
+F 3 "~" H 4100 1400 50  0001 C CNN
+	1    4100 1400
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	950  850  4550 850 
+Wire Wire Line
+	3650 1350 3650 1400
+Wire Wire Line
+	5000 1400 4300 1400
+Wire Wire Line
+	3900 1400 3650 1400
+Connection ~ 3650 1400
+Wire Wire Line
+	3650 1400 3650 2950
 $EndSCHEMATC
