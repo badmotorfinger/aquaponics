@@ -28,8 +28,7 @@ pcb/**/*.ses
 pcb/**/*.xml
 pcb/**/*.csv
 
-src/.clang_complete
-src/.gcc-flags.json
-src/.pio/
-
-
+.clang_complete
+.gcc-flags.json
+.pio/
+.vscode
