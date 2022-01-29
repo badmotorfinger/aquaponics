@@ -3,14 +3,14 @@
 #include <growbed_pump.h>
 
 #define WATERPUMP_PIN 2
-#define WATERPUMP_ON_SECONDS ((unsigned long)1000 * 90)
-#define WATERPUMP_OFF_SECONDS ((unsigned long)1000 * 60 * 2)
-#define WATERPUMP_OFF_SECONDS_NIGHTTIME ((unsigned long)1000 * 60 * 30)
 
-void GrowbedPump::loop(bool isNightTime)
-{
-  manageWaterInTank(isNightTime);
-}
+#define WATERPUMP_ON_SECONDS ((unsigned long)1000 * 90)
+
+#define WATERPUMP_OFF_HOT_DAY_SECONDS ((unsigned long)1000 * 60 * 2)
+#define WATERPUMP_OFF_HOT_NIGHT_SECONDS ((unsigned long)1000 * 60 * 5)
+
+#define WATERPUMP_OFF_SECONDS ((unsigned long)1000 * 60 * 30)
+#define WATERPUMP_OFF_SECONDS_NIGHTTIME ((unsigned long)1000 * 60 * 30)
 
 void GrowbedPump::init()
 {
@@ -21,7 +21,7 @@ void GrowbedPump::init()
   digitalWrite(WATERPUMP_PIN, LOW);
 }
 
-void GrowbedPump::manageWaterInTank(bool isNightTime)
+void GrowbedPump::manageWaterInTank(bool isNightTime, float temp, float humidity)
 {
     pumpDelay.justFinished();
 
@@ -48,6 +48,11 @@ void GrowbedPump::manageWaterInTank(bool isNightTime)
       isWaterPumpOn = false;
 
       uint32_t pumpOffSeconds = isNightTime ? WATERPUMP_OFF_SECONDS_NIGHTTIME : WATERPUMP_OFF_SECONDS;
+
+      if (isNightTime && temp >= 30)
+      {
+
+      }
 
       // Wait for the water to drain
       pumpDelay.start(pumpOffSeconds);

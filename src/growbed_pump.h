@@ -7,6 +7,5 @@ class GrowbedPump
 
 public:
   void init();
-  void loop(bool);
-  void manageWaterInTank(bool);
+  void manageWaterInTank(bool, float, float);
 };
