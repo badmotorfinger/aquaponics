@@ -31,7 +31,7 @@ void TempSensor::init()
   Serial.print  (F("Min Value:   ")); Serial.print(sensor.min_value); Serial.println(F("%"));
   Serial.print  (F("Resolution:  ")); Serial.print(sensor.resolution); Serial.println(F("%"));
   Serial.println(F("------------------------------------"));
-  
+
   // Set delay between sensor readings based on sensor details.
   uint32_t delayMS = sensor.min_delay / 1000;
 
@@ -40,6 +40,8 @@ void TempSensor::init()
   delay(delayMS);
 
   dht.temperature().getEvent(&event);
+  Serial.println(event.temperature);
+  print_temp_data(&event);
 
   lastTempEvent = event;
 
@@ -56,25 +58,35 @@ sensors_event_t TempSensor::get_temperature()
     // Get temperature event and print its value.
     sensors_event_t event;
     dht.temperature().getEvent(&event);
-    if (isnan(event.temperature)) {
-      Serial.println(F("Error reading temperature!"));
-    }
-    else {
-      Serial.print(F("Temperature: "));
-      Serial.print(event.temperature);
-      Serial.println(F("°C"));
-    }
-    // Get humidity event and print its value.
+    print_temp_data(&event);
+
     dht.humidity().getEvent(&event);
-    if (isnan(event.relative_humidity)) {
-      Serial.println(F("Error reading humidity!"));
-    }
-    else {
-      Serial.print(F("Humidity: "));
-      Serial.print(event.relative_humidity);
-      Serial.println(F("%"));
-    }
+    print_humidity_data(&event);
 
     tempDelay.repeat();
     return event;
+}
+
+void TempSensor::print_temp_data(sensors_event_t * event)
+{
+  if (isnan(event -> temperature)) {
+    Serial.println(F("Error reading temperature!"));
+  }
+  else {
+    Serial.print(F("Temperature: "));
+    Serial.print(event -> temperature);
+    Serial.println(F("°C"));
+  }
+}
+
+void TempSensor::print_humidity_data(sensors_event_t * event)
+{
+  if (isnan(event -> relative_humidity)) {
+    Serial.println(F("Error reading humidity!"));
+  }
+  else {
+    Serial.print(F("Humidity: "));
+    Serial.print(event -> relative_humidity);
+    Serial.println(F("%"));
+  }
 }

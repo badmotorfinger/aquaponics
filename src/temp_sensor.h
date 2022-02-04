@@ -14,6 +14,9 @@ private:
   DHT_Unified dht;
   millisDelay tempDelay;
 
+  void print_temp_data(sensors_event_t * event);
+  void print_humidity_data(sensors_event_t * event);
+
 public:
   TempSensor() : dht(DHTPIN, DHTTYPE) { };
   void init();

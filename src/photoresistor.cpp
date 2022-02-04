@@ -4,7 +4,8 @@
 
 #define NIGHTTIME 10
 #define LIGHT_SENSOR_PIN A3
-#define LIGHT_CHECK_INTERVAL (60000 * 30)
+//#define LIGHT_CHECK_INTERVAL (60000 * 5)
+#define LIGHT_CHECK_INTERVAL (1000 * 2)
 
 void PhotoResistor::init()
 {
@@ -13,6 +14,8 @@ void PhotoResistor::init()
 
 void PhotoResistor::detect_light_levels()
 {
+  growLightDelay.justFinished();
+
   if (growLightDelay.isRunning()) {
     return;
   }

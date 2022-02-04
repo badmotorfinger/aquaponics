@@ -8,4 +8,5 @@ class GrowbedPump
 public:
   void init();
   void manageWaterInTank(bool, float, float);
+  uint16_t remaining_time_seconds();
 };
